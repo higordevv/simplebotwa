@@ -7,6 +7,6 @@ export interface Ibot{
     isOwner: (id: string) => Promise<boolean>
     
     //sendText functions
-    sendMessage:(text:string)=>Promise<proto.IWebMessageInfo>,
+    sendText:(text:string)=>Promise<proto.IWebMessageInfo>,
     reply:(text:string)=>Promise<proto.IWebMessageInfo>,
 }
