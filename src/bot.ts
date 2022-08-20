@@ -8,6 +8,6 @@ export async function bot() {
     const [webMessage]=msg.messages
     const bot = botFunctions(webMessage, socket)
       const{sendText,reply} = bot
-      //
+      
   })  
 };

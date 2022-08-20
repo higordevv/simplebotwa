@@ -9,4 +9,6 @@ export interface Ibot{
     //sendText functions
     sendText:(text:string)=>Promise<proto.IWebMessageInfo>,
     reply:(text:string)=>Promise<proto.IWebMessageInfo>,
+    //
+    webMessage:proto.IWebMessageInfo
 }
