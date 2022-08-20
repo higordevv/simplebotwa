@@ -42,6 +42,11 @@ export function parameters(comand: string) {
 export async function caseComand(bot: Ibot) {
     const comand = parameters(extractComand(bot.webMessage.message))
     //cases dos comands
+    switch(comand[0]){
+        case `menu`:
+            //chamar função passando parametros
+            break
+    }
     console.log(comand)
 
     
