@@ -4,6 +4,7 @@ import comandsList from "../bot_config/comandsList";
 export default async function setList(bot: Ibot) {
   const { webMessage,reply } = bot;
 const {msgRecept}=data
+
 const {list}=msgRecept
   
 return await reply(list)
