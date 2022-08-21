@@ -1,2 +1,5 @@
 export default [
-    {comand:'menu'}]
+  { comand: "menu" },
+  { comand: "setList" },
+  { comand: "setMsg" },
+];
