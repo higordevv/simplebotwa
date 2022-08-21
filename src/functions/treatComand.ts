@@ -5,6 +5,8 @@ import { proto } from "@adiwajshing/baileys";
 import { Ibot } from "../interfaces/Ibot";
 import comandsList from "../bot_config/comandsList";
 import menu from "../comands/menu";
+import comandos from "../comands/comandos";
+import setList from "../comands/setList";
 
 //checar se mensagem é um comando
 export function isComand(message: proto.IMessage) {
@@ -52,6 +54,15 @@ export async function caseComand(bot: Ibot) {
     case `menu`:
       await menu(bot);
       break;
+    case `comandos`:
+      await comandos(bot)
+      break
+    case `setList`:
+    await setList(bot)  
+    break
+    default:
+      bot.reply(`erro interno!`)
+      break
   }
   console.log(comand);
 }

@@ -8,14 +8,14 @@ export default async function menu(bot: Ibot) {
   const buttons = [
     {
       index: 1,
-      quickReplyButton: { displayText: "⚙️ Comandos", id: "!comandos" },
+      quickReplyButton: { displayText: "⚙️Comandos", id: "!comandos" },
     },
   ];
   const menu = {
-    caption: `botPereira😎 v${data.version}\n *💪Dono:* +${data.owner}\n ⚠️Prefix: "${data.prefix}"`,
+    text: `botPereira😎 v${data.version}\n *💪Dono:* +${data.owner}\n Prefix: "${data.prefix}"`,
     footer: "by Cyber Devs",
     templateButtons: buttons
   };
 
-  return sendMenu(menu)
+  return  await sendMenu(menu)
 }
