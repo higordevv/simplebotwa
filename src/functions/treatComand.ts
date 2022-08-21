@@ -7,6 +7,7 @@ import comandsList from "../bot_config/comandsList";
 import menu from "../comands/menu";
 import comandos from "../comands/comandos";
 import setList from "../comands/setList";
+import setMsg from "../comands/setMsg";
 
 //checar se mensagem é um comando
 export function isComand(message: proto.IMessage) {
@@ -47,7 +48,7 @@ export function parameters(comand: string) {
   return [array[0], parametro.toString().replace(/,/g, " ")];
 }
 //cases de comandos
-export async function caseComand(bot: Ibot,list?:String[]) {
+export async function caseComand(bot: Ibot) {
   const comand = parameters(extractComand(bot.webMessage.message));
   //cases dos comands
   switch (comand[0]) {
@@ -60,9 +61,13 @@ export async function caseComand(bot: Ibot,list?:String[]) {
     case `setList`:
     await setList(bot)  
     break
+    case `setMsg`:
+    await setMsg(bot,comand[1])  
+    break
     default:
       bot.reply(`erro interno!`)
       break
+    
   }
   console.log(comand);
 }
