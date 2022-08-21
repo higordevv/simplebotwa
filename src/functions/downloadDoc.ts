@@ -6,8 +6,8 @@ import { downloadContentFromMessage, proto } from "@adiwajshing/baileys";
 
 export async function downloadDocumentmessage(contentMsg: proto.Message.IDocumentMessage) {
     
-    const filename = ``
-    const filetype = contentMsg.mimetype?.split('/')[1]
+    const filename = `list`
+    const filetype = `txt`
    try{
 
        let stream = await downloadContentFromMessage(contentMsg, "document");
@@ -20,8 +20,7 @@ export async function downloadDocumentmessage(contentMsg: proto.Message.IDocumen
        }
     
        try {
-           await fs.writeFileSync(path.resolve('temp', `${filename}.${filetype}`), buffer)
-          
+          fs.writeFileSync(path.resolve('temp', `${filename}.${filetype}`), buffer)
            return path.resolve('temp', `${filename}.${filetype}`)
        
        } catch (err) {
