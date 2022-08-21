@@ -1,8 +1,8 @@
 import { proto } from "@adiwajshing/baileys";
 import { Imenu } from "./Imenu";
-
+import { PathOrFileDescriptor} from 'fs'
 export interface Ibot {
-  // bot data
+
   botInfo: { id: string; name: string };
   //boolean check owner
   isOwner: (id: string) => Promise<boolean>;
@@ -10,6 +10,6 @@ export interface Ibot {
   //sendText functions
   sendText: (text: string) => Promise<proto.IWebMessageInfo>;
   reply: (text: string) => Promise<proto.IWebMessageInfo>;
-  sendMenu: (object: Imenu) => Promise<proto.WebMessageInfo>
+  sendMenu: (object: Imenu) => Promise<proto.WebMessageInfo>;
   webMessage: proto.IWebMessageInfo;
 }
