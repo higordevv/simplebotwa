@@ -1,5 +1,5 @@
 export interface Imenu {
-  caption: string;
+  text: string;
   footer: string;
   templateButtons: {
     index: number;

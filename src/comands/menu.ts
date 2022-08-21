@@ -12,10 +12,10 @@ export default async function menu(bot: Ibot) {
     },
   ];
   const menu = {
-    caption: `botPereira😎 v${data.version}\n *💪Dono:* +${data.owner}\n ⚠️Prefix: "${data.prefix}"`,
+    text: `botPereira😎 v${data.version}\n *💪Dono:* +${data.owner}\n Prefix: "${data.prefix}"`,
     footer: "by Cyber Devs",
     templateButtons: buttons
   };
 
-  return sendMenu(menu)
+  return  await sendMenu(menu)
 }
