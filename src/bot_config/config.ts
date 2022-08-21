@@ -1,6 +1,6 @@
 export const data = {
     "botname": '',
-    "owner": ' ',
-    "prefix": '',
-    "version": ''
+    "owner": '5527997374570',
+    "prefix": '!',
+    "version": '1.0'
 }
