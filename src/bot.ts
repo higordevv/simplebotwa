@@ -9,8 +9,13 @@ export async function bot() {
   socket.ev.on('messages.upsert',async (msg)=>{
     const [webMessage]=msg.messages
     const bot = botFunctions(webMessage, socket)
-      const{sendText,reply} = bot
+      const{reply} = bot
       const message = webMessage.message
+      
+      //nao falar em grupos
+      if(webMessage.key.participant){
+        return 
+      }
       if(!message){
             return
         }

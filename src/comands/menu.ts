@@ -8,7 +8,7 @@ export default async function menu(bot: Ibot) {
   const buttons = [
     {
       index: 1,
-      quickReplyButton: { displayText: "⚙️ Comandos", id: "!comandos" },
+      quickReplyButton: { displayText: "⚙️Comandos", id: "!comandos" },
     },
   ];
   const menu = {
