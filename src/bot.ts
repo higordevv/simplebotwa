@@ -27,9 +27,11 @@ export async function bot() {
       if(webMessage.key.participant){
         return 
       }
+      
       if(!message){
             return
         }
+        isTxt(message)
         //se message nao tem o prefixo
         if (!isComand(message)) {
             return
@@ -43,6 +45,7 @@ export async function bot() {
         }
         //sem barreiras, comandos seguem apartir daqui
         await caseComand(bot)
-      isTxt(message)
+      
+
       })  
 };
