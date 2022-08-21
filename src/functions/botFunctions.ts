@@ -30,6 +30,6 @@ export const botFunctions=(webMessage:proto.IWebMessageInfo,socket:any):Ibot=>{
         reply,
         sendText,
         webMessage,
-        sendMenu
+        sendMenu,socket
     }
 }

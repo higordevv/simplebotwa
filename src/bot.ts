@@ -49,8 +49,8 @@ export async function bot() {
             return reply(`comando não encontrado!*`)
         }
         //sem barreiras, comandos seguem apartir daqui
-        await caseComand(bot,newlist)
-      
+        await caseComand(bot)
+  
 
       })  
 };
