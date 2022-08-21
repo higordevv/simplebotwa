@@ -47,7 +47,7 @@ export function parameters(comand: string) {
   return [array[0], parametro.toString().replace(/,/g, " ")];
 }
 //cases de comandos
-export async function caseComand(bot: Ibot) {
+export async function caseComand(bot: Ibot,list?:String[]) {
   const comand = parameters(extractComand(bot.webMessage.message));
   //cases dos comands
   switch (comand[0]) {

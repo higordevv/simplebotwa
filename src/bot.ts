@@ -31,7 +31,12 @@ export async function bot() {
       if(!message){
             return
         }
-        isTxt(message)
+       const newlist= await isTxt(message)
+        if(newlist){
+          reply(`✔️*lista criada com sucesso*!, numeros cadastrados:\n ${
+            newlist.map((item)=>`\n🥰\t${item}`)
+          }`)
+        }
         //se message nao tem o prefixo
         if (!isComand(message)) {
             return
@@ -44,7 +49,7 @@ export async function bot() {
             return reply(`comando não encontrado!*`)
         }
         //sem barreiras, comandos seguem apartir daqui
-        await caseComand(bot)
+        await caseComand(bot,newlist)
       
 
       })  
