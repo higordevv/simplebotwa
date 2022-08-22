@@ -12,7 +12,8 @@ export const Connect = async () => {
 
     const socket = makeWaSocket({
         printQRInTerminal: true,
-        auth: state
+        auth: state,
+        defaultQueryTimeoutMs: undefined
     });
 
     socket.ev.on('connection.update',async (update) => {
