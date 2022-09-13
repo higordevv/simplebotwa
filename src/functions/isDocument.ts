@@ -7,7 +7,6 @@ import fs from "fs"
 export async function isTxt(message: proto.IMessage) {
   let doc = message.documentMessage;
  let quoted = doc?.contextInfo?.quotedMessage?.conversation
- 
   if (!doc) {
     return;
   }
