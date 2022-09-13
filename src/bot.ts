@@ -16,9 +16,9 @@ export async function bot() {
       return;
     }
 
-    if (!(await isOwner(number))) {
-      return
-    }
+   // if (!(await isOwner(number))) {
+   //   return
+   // }
 
     //nao falar em grupos
     if (webMessage.key.participant) {
@@ -32,7 +32,7 @@ export async function bot() {
     if (newlist) {
       reply(
         `✔️*lista criada com sucesso*!, numeros cadastrados:\n ${newlist.map(
-          (item) => `\n📲 -> \t${item}`
+          (item) => `\n-> \t${item}`
         )}`
       );
     }
