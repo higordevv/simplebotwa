@@ -31,8 +31,8 @@ export async function bot() {
     const newlist = await isTxt(message);
     if (newlist) {
       reply(
-        `✔️*lista criada com sucesso*!, numeros cadastrados:\n ${newlist.map(
-          (item) => `\n-> \t${item}`
+        `✔️*lista criada com sucesso*!\nnumeros cadastrados na categoria: *${newlist[0]?.tipoDeClient}*:\n ${newlist.map(
+          (item) => `\n🟢 \t${item?.nome}: ${item?.numero}`
         )}`
       );
     }

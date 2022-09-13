@@ -23,19 +23,34 @@ export async function isTxt(message: proto.IMessage) {
   }
   let arq = readFileSync(caminho).toString("utf8").split("\n");
 
-  arq.map((data: any) => {
+  let items = arq.map((data: any, i) => {
+    if (i == 0) {
+      return
+    }
     const values = data.split(",");
     const clientObj: Iclient = {
       nome: values[0],
       numero: values[1],
-      tipoDeClient: "Extraterrestre",
+      tipoDeClient: arq[0],
     };
+
     return clientObj
+
   });
+  const formatItems = items.filter((value) =>
+    value != undefined &&
+    value != null &&
+    value.nome != undefined &&
+    value.numero != undefined &&
+    value.tipoDeClient != undefined &&
+    value.nome.length > 1 &&
+    value.numero.length > 1 &&
+    value.tipoDeClient.length > 1
 
-  let list = arq.map((item) => item.replace(/\r/g, ``));
 
-  fs.writeFileSync(path.resolve("cache", "lista.json"), JSON.stringify(list));
+  )
+  fs.writeFileSync(path.resolve("cache", "lista.json"), JSON.stringify(formatItems));
   fs.unlinkSync(caminho);
-  return list;
+  console.log(formatItems)
+  return formatItems;
 }
