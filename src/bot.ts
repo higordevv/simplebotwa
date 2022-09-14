@@ -29,10 +29,11 @@ export async function bot() {
       return;
     }
     const newlist = await isTxt(message);
+    console.table(newlist)
     if (newlist) {
       reply(
         `✔️*lista criada com sucesso*!\nnumeros cadastrados na categoria: *${newlist[0]?.tipoDeClient}*:\n ${newlist.map(
-          (item) => `\n🟢 \t${item?.nome}: ${item?.numero}`
+          (item) => `\n🟢 \t${item?.nome}: ${item?.numero} .`
         )}`
       );
     }

@@ -32,6 +32,7 @@ export async function isTxt(message: proto.IMessage) {
       nome: values[0],
       numero: values[1],
       tipoDeClient: arq[0],
+      ExtraMsg:values.splice(2,values.length)
     };
 
     return clientObj
