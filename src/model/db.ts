@@ -6,7 +6,7 @@ const user = process.env.DB_USER
 const password = process.env.DB_PASS
 
 //conexão mongo
-mongoose.connect(`mongodb://localhost/banco`)
+mongoose.connect(`mongodb://localhost/bancoteste`)
     .then(() => { console.log('connectado ao mongodb') })
     .catch((e) => { console.log(e) })
 

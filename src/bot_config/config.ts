@@ -4,7 +4,7 @@ export const data = {
   prefix: "!",
   version: "1.0",
   msgRecept:{
-    list:`marque essa mensagem com a lista`
+    list:`marque essa mensagem com o .txt da lista`,
   }
 };
 

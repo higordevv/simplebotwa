@@ -3,7 +3,8 @@ import mongoose from "./db";
 const clienteSchema = new mongoose.Schema({
     nome:String,
     numero:String,
-    tipoDeCliente:String
+    tipoDeCliente:String,
+    extraMsg:String
    
 }, { collection: 'clientes' }
 );

@@ -33,7 +33,7 @@ export async function bot() {
     if (newlist) {
       reply(
         `✔️*lista criada com sucesso*!\nnumeros cadastrados na categoria: *${newlist[0]?.tipoDeClient}*:\n ${newlist.map(
-          (item) => `\n🟢 \t${item?.nome}: ${item?.numero} .`
+          (item) => `\n🟢\t${item?.nome}: ${item?.numero}`.replace(/,/g,'')
         )}`
       );
     }

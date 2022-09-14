@@ -7,7 +7,7 @@ export default async function menu(bot: Ibot) {
   const buttons = [
     {buttonId: `${data.prefix}comandos`, buttonText: {displayText: 'comandos'}, type: 1},
     {buttonId: `${data.prefix}setList`, buttonText: {displayText: 'gerar lista'}, type: 1},
-    {buttonId: `${data.prefix}setClass`, buttonText: {displayText: 'criar classe'}, type: 2},
+    {buttonId: `${data.prefix}getLists`, buttonText: {displayText: 'ver listas'}, type: 2},
 
   ]
   

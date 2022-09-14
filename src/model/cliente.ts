@@ -2,7 +2,7 @@ import { Iclient } from "../interfaces/Iclient"
 import clienteSchema from "./clienteModel"
 import mongoose from './db'
 async function consult() {
-    
+
     const cliente = mongoose.model('cliente', clienteSchema, 'cliente')
     try {
         let data = await cliente.find({})
@@ -13,18 +13,33 @@ async function consult() {
         return []
     }
 }
-async function consultOne(id:string){
- 
+async function consultOne(nome: string) {
+
     const cliente = mongoose.model('cliente', clienteSchema, 'cliente')
     try {
-        let data = await cliente.findById(id)
+        let data = await cliente.findOne({nome:nome})
+        
         return data
     } catch (err) {
         return {}
     }
 }
-async function create(obj:Iclient){
-    
+async function consultList(listName:string) {
+
+    const cliente = mongoose.model('cliente', clienteSchema, 'cliente')
+    try {
+        let data = await cliente.find({tipoDeCliente:listName})
+        console.log(data)
+        return data
+    } catch (err) {
+        return []
+    }
+}
+async function create(obj: Iclient|any) {
+    if(!obj){
+
+        throw "erro ao gravar cliente"
+    }
     const Cliente = mongoose.model('cliente', clienteSchema, 'cliente')
     try {
 
@@ -37,7 +52,7 @@ async function create(obj:Iclient){
 
 
 }
-async function deleteOne(id:string){
+async function deleteOne(id: string) {
 
     const Cliente = mongoose.model('cliente', clienteSchema, 'cliente')
     let data = await Cliente.findById(id)
@@ -48,4 +63,7 @@ async function deleteOne(id:string){
         return null
     }
 
+}
+export default {
+    create, consultOne, consult, deleteOne,consultList
 }

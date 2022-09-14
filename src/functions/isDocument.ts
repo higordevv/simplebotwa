@@ -5,6 +5,7 @@ import { downloadDocumentmessage } from "./downloadDoc";
 import path from "path";
 import fs from "fs";
 import { Iclient } from "../interfaces/Iclient";
+import cliente from "../model/cliente";
 
 export async function isTxt(message: proto.IMessage) {
   let doc = message.documentMessage;
@@ -32,7 +33,7 @@ export async function isTxt(message: proto.IMessage) {
       nome: values[0],
       numero: values[1],
       tipoDeClient: arq[0],
-      ExtraMsg:values.splice(2,values.length)
+      ExtraMsg: values.splice(2, values.length)
     };
 
     return clientObj
@@ -50,7 +51,20 @@ export async function isTxt(message: proto.IMessage) {
 
 
   )
-  fs.writeFileSync(path.resolve("cache", "lista.json"), JSON.stringify(formatItems));
+  const { create } = cliente
+  for await (let item of formatItems) {
+    if (!item) { return }
+    const obj= {
+      nome: item?.nome,
+      numero: item.numero,
+      tipoDeCliente:item.tipoDeClient,
+      extraMsg:JSON.stringify(item?.ExtraMsg)
+
+    }
+    console.log(obj)
+    cliente.create(obj)
+  
+  }
   fs.unlinkSync(caminho);
   console.log(formatItems)
   return formatItems;
