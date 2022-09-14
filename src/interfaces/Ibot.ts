@@ -1,8 +1,8 @@
 import { proto } from "@adiwajshing/baileys";
 import { Imenu } from "./Imenu";
-import { PathOrFileDescriptor} from 'fs'
+import { PathOrFileDescriptor } from "fs";
 export interface Ibot {
-  socket:any
+  socket: any;
   botInfo: { id: string; name: string };
   //boolean check owner
   isOwner: (id: string) => Promise<boolean>;
