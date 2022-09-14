@@ -8,6 +8,9 @@ import menu from "../comands/menu";
 import comandos from "../comands/comandos";
 import setList from "../comands/setList";
 import setMsg from "../comands/setMsg";
+import verListas from "../comands/verListas";
+import verMsg from "../comands/verMsg";
+import deletarLista from "../comands/deletarLista";
 
 //checar se mensagem é um comando
 export function isComand(message: proto.IMessage) {
@@ -75,6 +78,15 @@ export async function caseComand(bot: Ibot) {
     case `setMsg`:
       await setMsg(bot, comand[1])
       break
+      case `verLista`:
+        await verListas(bot,comand[1])
+        break
+        case `verMensagensExtras`:
+          await verMsg(bot,comand[1])
+          break
+          case `apagarLista`:
+            await deletarLista(bot,comand[1])
+            break
     default:
       bot.reply(`erro interno!`)
       break

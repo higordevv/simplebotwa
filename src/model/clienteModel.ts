@@ -7,5 +7,6 @@ const clienteSchema = new mongoose.Schema(
     tipoDeCliente: String,
   },
   { collection: "clientes" }
+
 );
 export default clienteSchema;

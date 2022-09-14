@@ -5,7 +5,6 @@ dotenv.config();
 const user = process.env.DB_USER;
 const password = process.env.DB_PASS;
 
-//conexão mongo
 mongoose
   .connect(`mongodb://localhost/banco`)
   .then(() => {
@@ -14,5 +13,6 @@ mongoose
   .catch((e) => {
     console.log(e);
   });
+
 
 export default mongoose;
