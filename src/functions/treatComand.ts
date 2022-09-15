@@ -78,15 +78,15 @@ export async function caseComand(bot: Ibot) {
     case `setMsg`:
       await setMsg(bot, comand[1])
       break
-      case `verLista`:
-        await verListas(bot,comand[1])
-        break
-        case `verMensagensExtras`:
-          await verMsg(bot,comand[1])
-          break
-          case `apagarLista`:
-            await deletarLista(bot,comand[1])
-            break
+    case `verLista`:
+      await verListas(bot, comand[1])
+      break
+    case `verMensagensExtras`:
+      await verMsg(bot, comand[1])
+      break
+    case `apagarLista`:
+      await deletarLista(bot, comand[1])
+      break
     default:
       bot.reply(`erro interno!`)
       break

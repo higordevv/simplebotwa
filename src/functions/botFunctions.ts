@@ -10,9 +10,11 @@ export const botFunctions=(webMessage:proto.IWebMessageInfo,socket:any):Ibot=>{
     const botInfo = socket.user
     const isOwner =async(number:string)=>{
         let numberFormated=number.split(`@`)[0]      
-        if(numberFormated==data.owner){
-            return true
-        }
+        data.owner.map((item)=>{
+            if(item==numberFormated){
+                return true
+            }
+        })
         return false
     }
     const sendText = async (txt: string) => {
