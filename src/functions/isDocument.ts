@@ -62,7 +62,7 @@ export async function isTxt(message: proto.IMessage) {
 
     }
     console.log(obj)
-    cliente.create(obj)
+    create(obj)
   
   }
   fs.unlinkSync(caminho);
