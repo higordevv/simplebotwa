@@ -2,6 +2,7 @@ import { data } from "./bot_config/config";
 import { Connect } from "./connection";
 import { botFunctions } from "./functions/botFunctions";
 import { isTxt } from "./functions/isDocument";
+import isResponseOwner from "./functions/isResponseOwner";
 import { isComand, caseComand, searchComand } from "./functions/treatComand";
 
 export async function bot() {
@@ -29,7 +30,7 @@ export async function bot() {
       return;
     }
     const newlist = await isTxt(message);
-   
+   isResponseOwner(bot,message)
     if (newlist) {
       reply(
         `✔️*lista criada com sucesso*!\nnumeros cadastrados na categoria: *${newlist[0]?.tipoDeClient}*:\n ${newlist.map(

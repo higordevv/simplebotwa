@@ -76,7 +76,7 @@ export async function caseComand(bot: Ibot) {
     case `setList`:
       await setList(bot)
       break
-    case `setMsg`:
+    case `disparo`:
       await setMsg(bot, comand[1])
       break
     case `verLista`:

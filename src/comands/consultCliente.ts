@@ -11,11 +11,11 @@ export default async function (bot: Ibot, name: string) {
     const res: any = await cliente.consultOne(name)
 
     if (!res) {
-        return reply('cliente não encontrado, por favor digite o *nome completo do cliente*')
+        return reply('cliente não encontrado, por favor digite o *nome completo do cliente* junto com o comando.')
     }
 
     const template = `*🌐CLIENTE ENCONTRADO🌐*\n\n*cliente*: ${res.nome}\n*numero*: ${res.numero}\n*tipo*: ${res.tipoDeCliente}`
 
     await reply(template)
-return sendText(``)
+return sendText(`para ver os parâmetros extras de algum cliente digite \n*${data.prefix}msgExtra nome do cliente*`)
 }
