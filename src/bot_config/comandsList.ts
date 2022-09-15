@@ -5,5 +5,5 @@ export default [
   { comand: "verMensagensExtras",resume: "exibe listas de extras salvas de determinado contato" },
   { comand: "apagarLista",resume: "deleta uma lista" },
   { comand: "setMsg", resume: "envia mensagem para a lista recebida." },
-  { comand: "comandos",  resume: "exibe todos os comandos." },
+  { comand: "comandos", resume: "exibe todos os comandos." },
 ];

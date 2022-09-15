@@ -3,8 +3,7 @@ export const data = {
   owner: ["5527997374570"],
   prefix: "!",
   version: "1.0",
-  msgRecept:{
-    list:`marque essa mensagem com o .txt da lista`,
-  }
+  msgRecept: {
+    list: `marque essa mensagem com a lista`,
+  },
 };
-
