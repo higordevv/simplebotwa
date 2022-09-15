@@ -11,6 +11,7 @@ import setMsg from "../comands/setMsg";
 import verListas from "../comands/verListas";
 import verMsg from "../comands/verMsg";
 import deletarLista from "../comands/deletarLista";
+import consultCliente from "../comands/consultCliente";
 
 //checar se mensagem é um comando
 export function isComand(message: proto.IMessage) {
@@ -84,6 +85,9 @@ export async function caseComand(bot: Ibot) {
     case `verMensagensExtras`:
       await verMsg(bot, comand[1])
       break
+      case `verCliente`:
+        await consultCliente(bot, comand[1])
+        break
     case `apagarLista`:
       await deletarLista(bot, comand[1])
       break
