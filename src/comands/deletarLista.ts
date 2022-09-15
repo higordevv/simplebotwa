@@ -17,5 +17,5 @@ await reply(`excluindo itens da lista ${nome}`)
 array.map(async(value)=>{
    await cliente.deleteOne(value.id)
 })
-return reply(`lista ${nome} apagada, você pode recadastrar a lista com o comando ${data.prefix}setList`)
+return reply(`lista *${nome}* apagada, você pode recadastrar a lista com o comando *${data.prefix}setList*`)
 }
