@@ -26,7 +26,6 @@ async function consultList(listName: string) {
   const cliente = mongoose.model("cliente", clienteSchema, "cliente");
   try {
     let data = await cliente.find({ tipoDeCliente: listName });
-    console.log(data);
     return data;
   } catch (err) {
     return [];
@@ -40,7 +39,7 @@ async function create(obj: Iclient | any) {
   try {
     const standOne = new Cliente(obj);
     await standOne.save();
-    console.log("Cliente Criado");
+    console.log(`[*] Cliente Criado: ${standOne.nome}`);
     return true;
   } catch (err) {
     return null;
@@ -51,7 +50,7 @@ async function deleteOne(id: string) {
   let data = await Cliente.findById(id);
   if (data != null) {
     await Cliente.deleteOne({ _id: id });
-    console.log("Cliente deletado");
+    console.log(` [!] Cliente deletado ${data.nome}`);
     return true;
   } else {
     return null;
