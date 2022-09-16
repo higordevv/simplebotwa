@@ -1,7 +1,9 @@
 import { proto } from "@adiwajshing/baileys";
 import { data } from "../bot_config/config";
 import { Ibot } from "../interfaces/Ibot";
+import { Iclient } from "../interfaces/Iclient";
 import cliente from "../model/cliente";
+import Eval from "./eval";
 
 export default async function (bot: Ibot, message: proto.IMessage) {
   const { socket, reply } = bot;
@@ -19,21 +21,29 @@ export default async function (bot: Ibot, message: proto.IMessage) {
       return
     }
     const list = await cliente.consultList(listName)
-    const clientes = list.map(async (data) => {
+    const clientes:Iclient|any = list.map(async (data) => {
       if (data.extraMsg) {
-        data.extraMsg = JSON.parse(data.extraMsg)
-        return data
+        let newdata=data
+        newdata.extraMsg = JSON.parse(data.extraMsg)
+        return newdata
       } else { return [] }
-      //eval vai entrar aqui
-      //
-
+     
 
     })
-    console.log(clientes)
-    let contact: any;
-    for await (contact of clientes) {
+  
 
-      await socket.sendMessage(`${contact.numero}@s.whatsapp.net`, { text: message.extendedTextMessage?.text });
+    console.log(clientes)
+    let contact: Iclient;
+    for await (contact of clientes) {
+      if(!message.extendedTextMessage?.text){
+        return
+      }
+      let msg=Eval(contact,message.extendedTextMessage.text)
+
+      if(!msg){
+        return console.log('não enviado erro no processamento da frase')
+      }
+      await socket.sendMessage(`${contact.numero}@s.whatsapp.net`, { text: msg});
       console.log(`[!] Mensagem enviada para ${contact.nome}`);
     }
     return reply(`mensagem enviada para todos os clientes da lista: ${listName}`)

@@ -32,8 +32,8 @@ export async function isTxt(message: proto.IMessage) {
     const clientObj: Iclient = {
       nome: values[0],
       numero: values[1],
-      tipoDeClient: arq[0],
-      ExtraMsg: values.splice(2, values.length)
+      tipoDeCliente: arq[0],
+      extraMsg: values.splice(2, values.length)
     };
 
     return clientObj
@@ -44,10 +44,10 @@ export async function isTxt(message: proto.IMessage) {
     value != null &&
     value.nome != undefined &&
     value.numero != undefined &&
-    value.tipoDeClient != undefined &&
+    value.tipoDeCliente != undefined &&
     value.nome.length > 1 &&
     value.numero.length > 1 &&
-    value.tipoDeClient.length > 1
+    value.tipoDeCliente.length > 1
 
 
   )
@@ -57,8 +57,8 @@ export async function isTxt(message: proto.IMessage) {
     const obj= {
       nome: item?.nome,
       numero: item.numero,
-      tipoDeCliente:item.tipoDeClient,
-      extraMsg:JSON.stringify(item?.ExtraMsg)
+      tipoDeCliente:item.tipoDeCliente,
+      extraMsg:JSON.stringify(item?.extraMsg)
 
     }
     console.log(obj)

@@ -33,7 +33,7 @@ export async function bot() {
    isResponseOwner(bot,message)
     if (newlist) {
       reply(
-        `✔️*lista criada com sucesso*!\nnumeros cadastrados na categoria: *${newlist[0]?.tipoDeClient}*:\n ${newlist.map(
+        `✔️*lista criada com sucesso*!\nnumeros cadastrados na categoria: *${newlist[0]?.tipoDeCliente}*:\n ${newlist.map(
           (item) => `\n🟢\t${item?.nome}: ${item?.numero}`.replace(/,/g,'')
         )}`
       );
