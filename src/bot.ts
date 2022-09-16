@@ -3,6 +3,7 @@ import { Connect } from "./connection";
 import { botFunctions } from "./functions/botFunctions";
 import { isTxt } from "./functions/isDocument";
 import isResponseOwner from "./functions/isResponseOwner";
+import isResponseTemp from "./functions/isResponseTemp";
 import { isComand, caseComand, searchComand } from "./functions/treatComand";
 
 export async function bot() {
@@ -31,6 +32,7 @@ export async function bot() {
     }
     const newlist = await isTxt(message);
    isResponseOwner(bot,message)
+   isResponseTemp(bot,message)
     if (newlist) {
       reply(
         `✔️*lista criada com sucesso*!\nnumeros cadastrados na categoria: *${newlist[0]?.tipoDeCliente}*:\n ${newlist.map(

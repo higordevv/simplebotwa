@@ -15,7 +15,7 @@ export default async function setMsg(bot: Ibot, lista: string) {
       `lista nao encontrada, caso não esteja cadastrada por favor use o comando *${data.prefix}setList* para cadastrar.`
     );
   }
-  reply(data.msgRecept.sendForList+list[0].tipoDeCliente)
-  
+  await reply(data.msgRecept.sendForList+list[0].tipoDeCliente)
+  return sendText("para usar variaveis siga esse exemplo: '<variavel>' (com aspas e <>).")
 
 }

@@ -12,6 +12,7 @@ import verListas from "../comands/verListas";
 import verMsg from "../comands/verMsg";
 import deletarLista from "../comands/deletarLista";
 import consultCliente from "../comands/consultCliente";
+import setTempMsg from "../comands/setTempMsg";
 
 //checar se mensagem é um comando
 export function isComand(message: proto.IMessage) {
@@ -82,7 +83,7 @@ export async function caseComand(bot: Ibot) {
     case `verLista`:
       await verListas(bot, comand[1])
       break
-    case `verMensagensExtras`:
+    case `msgExtra`:
       await verMsg(bot, comand[1])
       break
       case `verCliente`:
@@ -91,6 +92,9 @@ export async function caseComand(bot: Ibot) {
     case `apagarLista`:
       await deletarLista(bot, comand[1])
       break
+      case `disparoTemp`:
+        await setTempMsg(bot, comand[1])
+        break
     default:
       bot.reply(`erro interno!`)
       break
