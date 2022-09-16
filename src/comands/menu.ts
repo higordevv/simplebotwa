@@ -15,11 +15,7 @@ export default async function menu(bot: Ibot) {
       buttonText: { displayText: "⚙️ Gerar Lista" },
       type: 1,
     },
-    {
-      buttonId: `${data.prefix}setClass`,
-      buttonText: { displayText: "👥 Criar Classe" },
-      type: 2,
-    },
+    
   ];
 
   const menu = {
