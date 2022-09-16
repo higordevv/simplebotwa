@@ -41,7 +41,7 @@ export default async function (bot: Ibot, message: proto.IMessage) {
       let msg=Eval(contact,message.extendedTextMessage.text)
 
       if(!msg){
-        return console.log('não enviado erro no processamento da frase')
+        return console.log('[!]mensagem não enviada, erro no processamento da frase')
       }
       await socket.sendMessage(`${contact.numero}@s.whatsapp.net`, { text: msg});
       console.log(`[!] Mensagem enviada para ${contact.nome}`);

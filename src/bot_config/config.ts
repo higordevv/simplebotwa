@@ -5,6 +5,6 @@ export const data = {
   version: "1.0",
   msgRecept: {
     list: `marque essa mensagem com a lista`,
-    sendForList:`marque esse contato com a mensagem do disparo para a lista: `
+    sendForList:`marque essa mensagem com a mensagem do disparo para a lista: `
   },
 };

@@ -6,5 +6,6 @@ export default [
   { comand: "verCliente",resume: "busca e exibe um cliente" },
   { comand: "apagarLista",resume: "deleta uma lista" },
   { comand: "disparo", resume: "envia mensagem para a lista selecionada" },
+  { comand: "disparoTemp", resume: "envia mensagem para a lista selecionada em determinado horario" },
   { comand: "comandos", resume: "exibe todos os comandos." },
 ];
