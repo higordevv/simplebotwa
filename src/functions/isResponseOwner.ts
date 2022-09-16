@@ -2,7 +2,7 @@ import { proto } from "@adiwajshing/baileys";
 import { data } from "../bot_config/config";
 import { Ibot } from "../interfaces/Ibot";
 import { Iclient } from "../interfaces/Iclient";
-import cliente from "../model/cliente";
+import cliente from "../model/cliente_model/cliente";
 import Eval from "./eval";
 
 export default async function (bot: Ibot, message: proto.IMessage) {

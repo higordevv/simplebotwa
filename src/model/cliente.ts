@@ -1,6 +1,7 @@
-import { Iclient } from "../interfaces/Iclient";
+import { Iclient } from "../../interfaces/Iclient";
 import clienteSchema from "./clienteModel";
-import mongoose from "./db";
+import mongoose from "../db";
+
 async function consult() {
   const cliente = mongoose.model("cliente", clienteSchema, "cliente");
   try {
@@ -26,7 +27,6 @@ async function consultList(listName: string) {
   const cliente = mongoose.model("cliente", clienteSchema, "cliente");
   try {
     let data = await cliente.find({ tipoDeCliente: listName });
-    console.log(data);
     return data;
   } catch (err) {
     return [];

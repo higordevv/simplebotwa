@@ -6,14 +6,14 @@ const user = process.env.DB_USER;
 const password = process.env.DB_PASS;
 
 mongoose
-  .connect(`mongodb+srv://${user}:${password}@botdb.gajmvfm.mongodb.net/?retryWrites=true&w=majority`)
+  .connect(
+    `mongodb+srv://${user}:${password}@botdb.gajmvfm.mongodb.net/?retryWrites=true&w=majority`
+  )
   .then(() => {
-    
-    console.log("connectado ao mongodb");
+    console.log(`Connectado ao MongoDb`);
   })
   .catch((e) => {
     console.log(e);
   });
-
 
 export default mongoose;
