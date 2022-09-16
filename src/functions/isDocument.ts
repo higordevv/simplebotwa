@@ -5,7 +5,7 @@ import { downloadDocumentmessage } from "./downloadDoc";
 import path from "path";
 import fs from "fs";
 import { Iclient } from "../interfaces/Iclient";
-import cliente from "../model/cliente";
+import cliente from "../model/cliente_model/cliente";
 
 export async function isTxt(message: proto.IMessage) {
   let doc = message.documentMessage;

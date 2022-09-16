@@ -1,7 +1,7 @@
 import { Ibot } from "../interfaces/Ibot";
 import { data } from "../bot_config/config";
 
-import cliente from "../model/cliente";
+import cliente from "../model/cliente_model/cliente";
 
 
 export default async function (bot: Ibot, nome:string) {
