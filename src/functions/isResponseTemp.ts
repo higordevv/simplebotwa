@@ -14,7 +14,7 @@ export default async function (bot: Ibot, message: proto.IMessage) {
   let item = quoted.split(':')
   let util = item[1].split('#')
 
-  item = [util[0], `${util[1]}:${item[2]}`]
+  item = [util[0], `${util[1]}:${item[2]}`.replace(':0',':')]
  
   if (item.length != 2) { return }
   console.log(item)
@@ -35,15 +35,15 @@ export default async function (bot: Ibot, message: proto.IMessage) {
     } else { return [] }
   })
   
-  while (1) {
+ //fazer parada doida la do json pqp to ficando calvo.
+ 
     const time = item[1]
     const horas = `${new Date().getHours()}:${new Date().getMinutes()}`
     let contact: Iclient;
     if (time == horas) {
       console.log('igual')
       try {
-
-        for await (contact of clientes) {
+         for await (contact of clientes) {
           if (!message.extendedTextMessage?.text) {
             return
           }
@@ -63,5 +63,5 @@ export default async function (bot: Ibot, message: proto.IMessage) {
       }
 
     }
-  }
+  
 }
