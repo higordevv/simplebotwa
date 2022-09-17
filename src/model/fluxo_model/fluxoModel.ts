@@ -4,6 +4,7 @@ const FluxoSchema = new mongoose.Schema(
   {
     questions: String,
     answers: String,
+    variavel:String
   },
   { collection: "fluxo" }
 );

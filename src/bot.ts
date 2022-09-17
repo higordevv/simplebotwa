@@ -18,9 +18,9 @@ export async function bot() {
       return;
     }
 
-   if (!(await isOwner(number))) {
-   return
-   }
+    if (!(await isOwner(number))) {
+      return
+    }
 
     //nao falar em grupos
     if (webMessage.key.participant) {
@@ -31,15 +31,18 @@ export async function bot() {
       return;
     }
     const newlist = await isTxt(message);
-   isResponseOwner(bot,message)
-   isResponseTemp(bot,message)
-    if (newlist) {
-      reply(
-        `✔️*lista criada com sucesso*!\nnumeros cadastrados na categoria: *${newlist[0]?.tipoDeCliente}*:\n ${newlist.map(
-          (item) => `\n🟢\t${item?.nome}: ${item?.numero}`.replace(/,/g,'')
-        )}`
-      );
-    }
+    isResponseOwner(bot, message)
+    isResponseTemp(bot, message)
+   
+      if (newlist?.formatItems) {
+        reply(
+          `✔️*lista criada com sucesso*!\nnumeros cadastrados na categoria: *${newlist.formatItems[0]?.tipoDeCliente}*:\n ${newlist.formatItems.map(
+            (item: any) => `\n🟢\t${item?.nome}: ${item?.numero}`.replace(/,/g, '')
+          )}`
+        );
+      }
+
+    
     //se message nao tem o prefixo
     if (!isComand(message)) {
       return;
