@@ -14,8 +14,13 @@ export default async function (bot: Ibot, message: proto.IMessage) {
     return;
   }
   let item = quoted.split(':')
-  let util = item[1].split('#')
 
+  let util;
+  try{
+  util= item[1].split('#')
+  }catch{
+    return
+  }
   item = [util[0], `${util[1]}:${item[2]}`]
 
   if (item.length != 2) { return }

@@ -6,7 +6,7 @@ export default async function comandos(bot: Ibot) {
   const { webMessage, reply } = bot;
   let template = ` Comandos:\n`;
   comandsList.map((obj) => {
-    template += `\n*${data.prefix}${obj.comand}* ➔ _${obj.resume}_`;
+    template += `\n*${data.prefix}${obj.comand}* ➔ _${obj.resume}_\n`;
   });
   return reply(template);
 }

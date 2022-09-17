@@ -13,6 +13,11 @@ import verMsg from "../comands/verMsg";
 import deletarLista from "../comands/deletarLista";
 import consultCliente from "../comands/consultCliente";
 import setTempMsg from "../comands/setTempMsg";
+import setKeyword from "../comands/setKeyword";
+import setFluxo from "../comands/setFluxo";
+import verKeywords from "../comands/verKeywords";
+import deletarKeyword from "../comands/deletarKeyword";
+import verTodasKeywords from "../comands/verTodasKeywords";
 
 //checar se mensagem é um comando
 export function isComand(message: proto.IMessage) {
@@ -86,15 +91,30 @@ export async function caseComand(bot: Ibot) {
     case `msgExtra`:
       await verMsg(bot, comand[1])
       break
-      case `verCliente`:
-        await consultCliente(bot, comand[1])
+    case `verCliente`:
+      await consultCliente(bot, comand[1])
+      break
+      case `verKeyword`:
+        await verKeywords(bot, comand[1])
         break
     case `apagarLista`:
       await deletarLista(bot, comand[1])
       break
-      case `disparoTemp`:
-        await setTempMsg(bot, comand[1])
+    case `disparoTemp`:
+      await setTempMsg(bot, comand[1])
+      break
+      case `apagarKeyword`:
+      await deletarKeyword(bot, comand[1])
+      break
+      case `verTodasKeywords`:
+        await verTodasKeywords(bot)
         break
+    case `setKeyword`:
+      await setKeyword(bot)
+      break
+    case `setFluxo`:
+      await setFluxo(bot)
+      break
     default:
       bot.reply(`erro interno!`)
       break
