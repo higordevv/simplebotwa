@@ -7,7 +7,7 @@ async function read_keyWord() {
   const KeyWord = mongoose.model("keyword", KeyWordSchemma, "keyword");
   try {
     let data = await KeyWord.find({});
-    console.log(data)
+    
     return data;
   } catch (err) {
     console.log(err);
@@ -18,7 +18,7 @@ async function sch_keyWord(name:string) {
   const KeyWord = mongoose.model("keyword", KeyWordSchemma, "keyword");
   try {
     let data = await KeyWord.findOne({key_word:name});
-    console.log(data)
+  
     return data;
   } catch (err) {
     console.log(err);
