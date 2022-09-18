@@ -1,6 +1,7 @@
 import { data } from "./bot_config/config";
 import { Connect } from "./connection";
 import { botFunctions } from "./functions/botFunctions";
+import interaction from "./functions/interaction";
 import { isTxt } from "./functions/isDocument";
 import isResponseOwner from "./functions/isResponseOwner";
 import isResponseTemp from "./functions/isResponseTemp";
@@ -17,14 +18,16 @@ export async function bot() {
     if (!number) {
       return;
     }
-
-    if (!(await isOwner(number))) {
-      return
-    }
-
     //nao falar em grupos
     if (webMessage.key.participant) {
       return;
+    }
+    //interação
+    if (message) {
+      interaction(bot, message)
+    }
+    if (!(await isOwner(number))) {
+      return
     }
 
     if (!message) {
@@ -33,16 +36,16 @@ export async function bot() {
     const newlist = await isTxt(message);
     isResponseOwner(bot, message)
     isResponseTemp(bot, message)
-   
-      if (newlist?.formatItems) {
-        reply(
-          `✔️*lista criada com sucesso*!\nnumeros cadastrados na categoria: *${newlist.formatItems[0]?.tipoDeCliente}*:\n ${newlist.formatItems.map(
-            (item: any) => `\n🟢\t${item?.nome}: ${item?.numero}`.replace(/,/g, '')
-          )}`
-        );
-      }
 
-    
+    if (newlist?.formatItems) {
+      reply(
+        `✔️*lista criada com sucesso*!\nnumeros cadastrados na categoria: *${newlist.formatItems[0]?.tipoDeCliente}*:\n ${newlist.formatItems.map(
+          (item: any) => `\n🟢\t${item?.nome}: ${item?.numero}`.replace(/,/g, '')
+        )}`
+      );
+    }
+
+
     //se message nao tem o prefixo
     if (!isComand(message)) {
       return;

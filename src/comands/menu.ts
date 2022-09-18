@@ -15,6 +15,11 @@ export default async function menu(bot: Ibot) {
       buttonText: { displayText: "⚙️ Gerar Lista" },
       type: 1,
     },
+    {
+      buttonId: `${data.prefix}verTodasKeywords`,
+      buttonText: { displayText: "🔑palavras chave" },
+      type: 1,
+    }
     
   ];
 
