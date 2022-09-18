@@ -2,9 +2,9 @@ import mongoose from "../db";
 
 const FluxoSchema = new mongoose.Schema(
   {
+    titulo:String,
     questions: String,
-    answers: String,
-    variavel:String
+    
   },
   { collection: "fluxo" }
 );

@@ -6,7 +6,7 @@ import cliente from "../model/cliente_model/cliente";
 export default async function (bot: Ibot, name: string) {
   const { webMessage, reply } = bot;
   if (!name) {
-    return reply(`digite o nome da lista junto do comando\n *Exemplo*: ${data.prefix}verLista nome da lista`)
+    return reply(`digite o nome junto do comando\n *Exemplo*: ${data.prefix}msgExtra nome do cliente`)
   }
   const result: any = await cliente.consultOne(name)
   if (!result) {
