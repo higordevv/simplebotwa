@@ -2,6 +2,7 @@ import { proto } from "@adiwajshing/baileys";
 import { Imenu } from "./Imenu";
 import { PathOrFileDescriptor } from "fs";
 export interface Ibot {
+  remoteJid?:string|undefined|null,
   socket: any;
   botInfo: { id: string; name: string };
   //boolean check owner

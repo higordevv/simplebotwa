@@ -11,6 +11,7 @@ export async function bot() {
   const socket = await Connect();
   socket.ev.on("messages.upsert", async (msg) => {
     const [webMessage] = msg.messages;
+   
     const bot = botFunctions(webMessage, socket);
     const { reply, isOwner } = bot;
     const message = webMessage.message;

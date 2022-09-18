@@ -31,5 +31,5 @@ export default async function (bot: Ibot, message: proto.IMessage) {
 
         }
     }
-    console.log(txt)
+    
 }

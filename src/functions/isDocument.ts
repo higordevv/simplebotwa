@@ -8,6 +8,8 @@ import { Iclient } from "../interfaces/Iclient";
 import cliente from "../model/cliente_model/cliente";
 import keywordConstructor from "./keywordConstructor";
 import { create_keyWord } from "../model/keyword_model/key_word";
+import fluxConstrutor from "./fluxConstrutor";
+import { create_fluxo } from "../model/fluxo_model/fluxo";
 
 export async function isTxt(message: proto.IMessage) {
   const { list, keyword, fluxo } = data.msgRecept
@@ -69,9 +71,9 @@ export async function isTxt(message: proto.IMessage) {
       }
       fs.unlinkSync(caminho);
 
-    return { formatItems, aviso: 'criada lista de clientes' };
+      return { formatItems, aviso: 'criada lista de clientes' };
     case keyword:
-  
+
       let linesKey = readFileSync(caminho).toString("utf8").split('\n')
       let keytxt
       fs.unlinkSync(caminho);
@@ -86,13 +88,19 @@ export async function isTxt(message: proto.IMessage) {
         }
         try {
           await create_keyWord(keywordDb)
-          console.log('keywords criadas')
+
         } catch {
           console.log('erro ao salvar keyword')
         }
       }
       return
     case fluxo:
+      let flux = fluxConstrutor(readFileSync(caminho).toString("utf8").split('\n'))
+      if (flux) {
+        let obj: any = flux
+        obj.questions = JSON.stringify(flux.questions)
+       await create_fluxo(obj)
+      }
       fs.unlinkSync(caminho);
       return
     default:

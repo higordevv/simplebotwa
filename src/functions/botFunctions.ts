@@ -28,6 +28,7 @@ export const botFunctions = (webMessage: proto.IWebMessageInfo, socket: any): Ib
         return socket.sendMessage(remoteJid, templateMessage);
     };
     return {
+        remoteJid,
         botInfo,
         isOwner,
         reply,
