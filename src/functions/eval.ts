@@ -1,22 +1,21 @@
 import { Iclient } from "../interfaces/Iclient";
 import { proto } from "@adiwajshing/baileys";
 
-function Eval(cliente: Iclient, msg: string) {
-  let{nome,numero,extraMsg,tipoDeCliente}=cliente
-let msgExtra=JSON.parse(extraMsg.toString())
+function Eval(cliente: Iclient, msg: string | any) {
+  let { nome, numero, extraMsg, tipoDeCliente } = cliente;
+  let msgExtra = JSON.parse(extraMsg.toString());
   try {
-  
     //Formato da msg
     const StringMsg = msg;
-    //Cocatena 
-    let frase = `' ${StringMsg} '`;
+    //Cocatena
+    let frase = `'${StringMsg}'`;
     let nFrase = frase.replace(/[<>]/g, " +");
-    nFrase = nFrase.replace(/[()]/g, " +");
+    nFrase = nFrase.replace(/[()]/g, `${'"'}`);
+    nFrase = nFrase.replace(/\n*\n*/gi, `${/\/\n\n/}`);
     //Eval
 
     return eval(nFrase);
   } catch (e) {
-  
     return false;
   }
 }
