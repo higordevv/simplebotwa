@@ -56,21 +56,21 @@ export default async function (cliente: Iclient | any, fluxo: Ifluxo | any, bot:
                     }
                 })
                 finish = true
-                return sendText(`respostas de ${obj.cliente}:\n ${obj.dados.map((x: any) => { return `🟢${x.pergunta}: ${x.resposta}\n\n` })}`.replace(/,/g, ''))
+                return sendText(`respostas de ${obj.cliente}:\n${cliente.numero} \n${obj.dados.map((x: any) => { return `🟢${x.pergunta}: ${x.resposta}\n\n` })}`.replace(/,/g, ''))
 
 
             }
             if (contrariaAnsw == true) {
                 questions[cFlux].resposta = message
-                cFlux = questions.length-1
+                cFlux = questions.length - 1
                 contrariaAnsw = false
                 return iteract()
             }
-            let complex=questions[cFlux].possivelResposta.split(',')
-            let inclue=false
-            complex.map((value:any)=>{
-                if(message.includes(value)){
-                    inclue=true
+            let complex = questions[cFlux].possivelResposta.split(',')
+            let inclue = false
+            complex.map((value: any) => {
+                if (message.includes(value)) {
+                    inclue = true
                 }
             })
             if (inclue) {
