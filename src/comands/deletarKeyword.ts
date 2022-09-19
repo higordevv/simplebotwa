@@ -4,7 +4,13 @@ import { delete_keyWord, read_keyWord, sch_keyWord } from "../model/keyword_mode
 
 
 export default async function (bot: Ibot, name: string) {
-  const { webMessage, reply } = bot;
+  const { webMessage, reply,isOwner,remoteJid } = bot;
+  if(!remoteJid){
+   return
+  }
+   if(!(await isOwner(remoteJid))){
+     return reply(`não autorizado`)
+   }
   if (!name) {
     return reply(`Digite o nome da palavra junto do comando\n *Exemplo*: ${data.prefix}apagarKeyword de palavra`)
   }
