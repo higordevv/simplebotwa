@@ -10,9 +10,10 @@ import { isComand, caseComand, searchComand } from "./functions/treatComand";
 export async function bot() {
   const socket = await Connect();
   socket.ev.on("messages.upsert", async (msg) => {
+    //console.log('entrou')
     const [webMessage] = msg.messages;
     const bot = botFunctions(webMessage, socket);
-    const { reply, isOwner } = bot;
+    const { reply, isOwner,isUser } = bot;
     const message = webMessage.message;
     const number = webMessage.key.remoteJid?.split(`@`)[0];
     if (!number) {
@@ -26,7 +27,7 @@ export async function bot() {
     if (message) {
       interaction(bot, message);
     }
-    if (!(await isOwner(number))) {
+    if (!(await isOwner(number))&& !(await isUser(number)) ) {
       return;
     }
 

@@ -7,7 +7,7 @@ export interface Ibot {
   botInfo: { id: string; name: string };
   //boolean check owner
   isOwner: (id: string) => Promise<boolean>;
-
+  isUser: (id: string) => Promise<boolean>;
   //sendText functions
   sendText: (text: string) => Promise<proto.IWebMessageInfo>;
   reply: (text: string) => Promise<proto.IWebMessageInfo>;

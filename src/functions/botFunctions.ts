@@ -20,6 +20,16 @@ export const botFunctions = (
 
     return false;
   };
+  const isUser = async (number: string) => {
+    let numberFormated = number.split(`@`)[0];
+    for await (let numberOw of data.user) {
+      if (numberFormated == numberOw) {
+        return true;
+      }
+    }
+
+    return false;
+  };
   const sendText = async (txt: string) => {
     return socket.sendMessage(remoteJid, { text: txt });
   };
@@ -37,6 +47,6 @@ export const botFunctions = (
     sendText,
     webMessage,
     sendMenu,
-    socket,
+    socket,isUser
   };
 };
