@@ -22,6 +22,5 @@ export default function (txt: string[]) {
     };
     fluxmap.questions?.push(obj);
   });
-  //console.log(fluxmap)
   return fluxmap;
 }

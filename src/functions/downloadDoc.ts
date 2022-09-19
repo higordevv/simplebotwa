@@ -21,11 +21,11 @@ export async function downloadDocumentmessage(
       fs.writeFileSync(path.resolve("temp", `${filename}.${filetype}`), buffer);
       return path.resolve("temp", `${filename}.${filetype}`);
     } catch (err) {
-      console.log(`erro ao escrever arquivo:\n ${err}`);
+      console.log(`Erro ao escrever arquivo:\n ${err}`);
       return null;
     }
   } catch (err) {
-    console.log("erro no stream \n" + err);
+    console.log("Erro no stream \n" + err);
     return null;
   }
 }

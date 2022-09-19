@@ -10,7 +10,7 @@ function Eval(cliente: Iclient, msg: string | any) {
     let frase = `'${StringMsg}'`;
     let nFrase = frase.replace(/[<>]/g, " +");
     nFrase = nFrase.replace(/[()]/g, `${'"'}`);
-    nFrase = nFrase.replace(/\n*\n*/gi, `${/\n\n/}`);
+    nFrase = nFrase.replace(/\n*\n*/g, `${/\n\n/}`);
     //Eval
 
     return eval(nFrase);

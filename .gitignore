@@ -41,13 +41,3 @@ dist/**/*
 
 # ignore yarn.lock
 yarn.lock
-cache/*
-
-# formats temp media
-assets/temp/*.png
-assets/temp/*.jpg
-assets/temp/*.webp
-assets/temp/*.gif
-assets/temp/*.mp4
-assets/temp/*.mp3
-assets/temp/*.pdf
