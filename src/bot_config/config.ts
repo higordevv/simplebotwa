@@ -1,7 +1,7 @@
 export const data = {
   botname: "",
   owner: ["558888858938"],
-  user:["5521984191603"],
+  user:["558888858938"],
   prefix: "!",
   version: "1.0",
   msgRecept: {
