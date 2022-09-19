@@ -7,48 +7,56 @@ import Eval from "./eval";
 
 export default async function (bot: Ibot, message: proto.IMessage) {
   const { socket, reply } = bot;
-  let quoted = message.extendedTextMessage?.contextInfo?.quotedMessage?.conversation;
+  let quoted =
+    message.extendedTextMessage?.contextInfo?.quotedMessage?.conversation;
   if (!quoted) {
     return;
   }
-  const item = quoted.split(':')
-  if (item.length != 2) { return }
+  const item = quoted.split(":");
+  if (item.length != 2) {
+    return;
+  }
   try {
-    console.log(item)
-    const listName = item[1].trim()
-    console.log(listName)
+    console.log(item);
+    const listName = item[1].trim();
+    console.log(listName);
     if (quoted != data.msgRecept.sendForList + listName) {
-      return
+      return;
     }
-    const list = await cliente.consultList(listName)
-    const clientes:Iclient|any = list.map(async (data) => {
+    const list = await cliente.consultList(listName);
+    const clientes: Iclient | any = list.map(async (data) => {
       if (data.extraMsg) {
-        let newdata=data
-        newdata.extraMsg = JSON.parse(data.extraMsg)
-        return newdata
-      } else { return [] }
-     
+        let newdata = data;
+        newdata.extraMsg = JSON.parse(data.extraMsg);
+        return newdata;
+      } else {
+        return [];
+      }
+    });
 
-    })
-  
-
-    console.log(clientes)
+    console.log(clientes);
     let contact: Iclient;
     for await (contact of clientes) {
-      if(!message.extendedTextMessage?.text){
-        return
+      if (!message.extendedTextMessage?.text) {
+        return;
       }
-      let msg=Eval(contact,message.extendedTextMessage.text)
+      let msg = Eval(contact, message.extendedTextMessage.text);
 
-      if(!msg){
-        return console.log('[!]mensagem não enviada, erro no processamento da frase')
+      if (!msg) {
+        return console.log(
+          "[!]mensagem não enviada, erro no processamento da frase"
+        );
       }
-      await socket.sendMessage(`${contact.numero}@s.whatsapp.net`, { text: msg});
+      await socket.sendMessage(`${contact.numero}@s.whatsapp.net`, {
+        text: msg,
+      });
       console.log(`[!] Mensagem enviada para ${contact.nome}`);
     }
-    return reply(`mensagem enviada para todos os clientes da lista: ${listName}`)
+    return reply(
+      `mensagem enviada para todos os clientes da lista: ${listName}`
+    );
   } catch (err) {
-    console.log(err)
+    console.log(err);
     return;
   }
 }

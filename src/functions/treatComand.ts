@@ -25,51 +25,49 @@ import disparoFluxo from "../comands/disparoFluxo";
 
 //checar se mensagem é um comando
 export function isComand(message: proto.IMessage) {
-
-  const texto = message?.conversation ||
+  const texto =
+    message?.conversation ||
     message?.imageMessage?.caption ||
     message?.extendedTextMessage?.text ||
     message.videoMessage?.caption ||
     message.templateButtonReplyMessage?.selectedId ||
-    message.buttonsResponseMessage?.selectedButtonId
-
-
-
+    message.buttonsResponseMessage?.selectedButtonId;
 
   if (!texto) {
-    return
+    return;
   }
   try {
-    let prefix = texto.split("")[0]
+    let prefix = texto.split("")[0];
     if (prefix == data.prefix) {
-      return true
-    } else return false
+      return true;
+    } else return false;
   } catch (err) {
-    return false
+    return false;
   }
 }
 //procurar comando da comandlist
 export function searchComand(Webmessage: proto.IWebMessageInfo) {
-  const { message } = Webmessage
+  const { message } = Webmessage;
 
-  const comand = parameters(extractComand(message))
-  let exists = comandsList.find(str => str.comand == comand[0])
+  const comand = parameters(extractComand(message));
+  let exists = comandsList.find((str) => str.comand == comand[0]);
   if (exists) {
-    return true
+    return true;
   } else {
-    return false
+    return false;
   }
 }
 //extrair parametro
 export function parameters(comand: string) {
-
   if (!comand) {
-    return [comand]
+    return [comand];
   }
-  const array = comand.split(" ").filter((x) => { return x.length > 1 })
-  let parametro = array.filter(element => element != array[0])
+  const array = comand.split(" ").filter((x) => {
+    return x.length > 1;
+  });
+  let parametro = array.filter((element) => element != array[0]);
 
-  return [array[0], parametro.toString().replace(/,/g, " ")]
+  return [array[0], parametro.toString().replace(/,/g, " ")];
 }
 //cases de comandos
 export async function caseComand(bot: Ibot) {
@@ -81,62 +79,60 @@ export async function caseComand(bot: Ibot) {
       await menu(bot);
       break;
     case `comandos`:
-      await comandos(bot)
-      break
+      await comandos(bot);
+      break;
     case `setList`:
-      await setList(bot)
-      break
+      await setList(bot);
+      break;
     case `disparo`:
-      await setMsg(bot, comand[1])
-      break
+      await setMsg(bot, comand[1]);
+      break;
     case `verLista`:
-      await verListas(bot, comand[1])
-      break
+      await verListas(bot, comand[1]);
+      break;
     case `msgExtra`:
-      await verMsg(bot, comand[1])
-      break
+      await verMsg(bot, comand[1]);
+      break;
     case `verCliente`:
-      await consultCliente(bot, comand[1])
-      break
+      await consultCliente(bot, comand[1]);
+      break;
     case `verKeyword`:
-      await verKeywords(bot, comand[1])
-      break
+      await verKeywords(bot, comand[1]);
+      break;
     case `apagarLista`:
-      await deletarLista(bot, comand[1])
-      break
+      await deletarLista(bot, comand[1]);
+      break;
     case `disparoTemp`:
-      await setTempMsg(bot, comand[1])
-      break
+      await setTempMsg(bot, comand[1]);
+      break;
     case `apagarKeyword`:
-      await deletarKeyword(bot, comand[1])
-      break
+      await deletarKeyword(bot, comand[1]);
+      break;
     case `verTodasKeywords`:
-      await verTodasKeywords(bot)
-      break
+      await verTodasKeywords(bot);
+      break;
     case `verFluxo`:
-      await verFluxo(bot, comand[1])
-      break
+      await verFluxo(bot, comand[1]);
+      break;
     case `verTodosFluxos`:
-      await verTodosFluxos(bot)
-      break
-      case `apagarFluxo`:
-        await deletarFluxo(bot,comand[1])
-        break
+      await verTodosFluxos(bot);
+      break;
+    case `apagarFluxo`:
+      await deletarFluxo(bot, comand[1]);
+      break;
     case `setKeyword`:
-      await setKeyword(bot)
-      break
+      await setKeyword(bot);
+      break;
     case `setFluxo`:
-      await setFluxo(bot)
-      break
-      case `disparoFluxo`:
-      await disparoFluxo(bot,comand[1])
-      break
+      await setFluxo(bot);
+      break;
+    case `disparoFluxo`:
+      await disparoFluxo(bot, comand[1]);
+      break;
     default:
-      bot.reply(`erro interno!`)
-      break
-
+      bot.reply(`erro interno!`);
+      break;
   }
-
 }
 //extrair comando da mensagem
 export function extractComand(msg: proto.IMessage | any) {
@@ -146,7 +142,7 @@ export function extractComand(msg: proto.IMessage | any) {
     msg.extendedTextMessage?.text ||
     msg.videoMessage?.caption ||
     msg.templateButtonReplyMessage?.selectedId ||
-    msg.buttonsResponseMessage?.selectedButtonId
+    msg.buttonsResponseMessage?.selectedButtonId;
   const comand = texto?.replace(data.prefix, "");
 
   return comand;

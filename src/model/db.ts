@@ -10,7 +10,7 @@ mongoose
     `mongodb+srv://${user}:${password}@botdb.gajmvfm.mongodb.net/?retryWrites=true&w=majority`
   )
   .then(() => {
-    console.log(`Connectado ao MongoDb`);
+    console.log(`\n [!] Connectado ao MongoDb`);
   })
   .catch((e) => {
     console.log(e);

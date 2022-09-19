@@ -11,7 +11,6 @@ export async function bot() {
   const socket = await Connect();
   socket.ev.on("messages.upsert", async (msg) => {
     const [webMessage] = msg.messages;
-   
     const bot = botFunctions(webMessage, socket);
     const { reply, isOwner } = bot;
     const message = webMessage.message;
@@ -25,27 +24,28 @@ export async function bot() {
     }
     //interação
     if (message) {
-      interaction(bot, message)
+      interaction(bot, message);
     }
     if (!(await isOwner(number))) {
-      return
+      return;
     }
 
     if (!message) {
       return;
     }
     const newlist = await isTxt(message);
-    isResponseOwner(bot, message)
-    isResponseTemp(bot, message)
+    isResponseOwner(bot, message);
+    isResponseTemp(bot, message);
 
     if (newlist?.formatItems) {
       reply(
-        `✔️*lista criada com sucesso*!\nnumeros cadastrados na categoria: *${newlist.formatItems[0]?.tipoDeCliente}*:\n ${newlist.formatItems.map(
-          (item: any) => `\n🟢\t${item?.nome}: ${item?.numero}`.replace(/,/g, '')
+        `✔️*Lista criada com sucesso*!\nnumeros cadastrados na categoria: *${
+          newlist.formatItems[0]?.tipoDeCliente
+        }*:\n ${newlist.formatItems.map((item: any) =>
+          `\n🟢\t${item?.nome}: ${item?.numero}`.replace(/,/g, "")
         )}`
       );
     }
-
 
     //se message nao tem o prefixo
     if (!isComand(message)) {
@@ -55,7 +55,7 @@ export async function bot() {
     //se o comando nao existe
 
     if (!searchComand(webMessage)) {
-      return reply(`comando não encontrado!*`);
+      return reply(`Comando não encontrado!*`);
     }
     //sem barreiras, comandos seguem apartir daqui
     await caseComand(bot);

@@ -6,7 +6,6 @@ async function consult() {
   const cliente = mongoose.model("cliente", clienteSchema, "cliente");
   try {
     let data = await cliente.find({});
-
     return data;
   } catch (err) {
     console.log(err);
@@ -17,7 +16,6 @@ async function consultOne(nome: string) {
   const cliente = mongoose.model("cliente", clienteSchema, "cliente");
   try {
     let data = await cliente.findOne({ nome: nome });
-
     return data;
   } catch (err) {
     return {};
@@ -40,7 +38,7 @@ async function create(obj: Iclient | any) {
   try {
     const standOne = new Cliente(obj);
     await standOne.save();
-    console.log("[!] Cliente Criado: "+ obj.nome);
+    console.log("[!] Cliente Criado: " + obj.nome);
     return true;
   } catch (err) {
     return null;
@@ -51,7 +49,7 @@ async function deleteOne(id: string) {
   let data = await Cliente.findById(id);
   if (data != null) {
     await Cliente.deleteOne({ _id: id });
-    console.log("[!] Cliente deletado: "+data.nome);
+    console.log("[!] Cliente deletado: " + data.nome);
     return true;
   } else {
     return null;

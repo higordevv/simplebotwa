@@ -17,7 +17,7 @@ export default async function menu(bot: Ibot) {
     },
     {
       buttonId: `${data.prefix}verTodasKeywords`,
-      buttonText: { displayText: "🔑palavras chave" },
+      buttonText: { displayText: "🔑 Palavras chave" },
       type: 1,
     }
     
@@ -25,7 +25,7 @@ export default async function menu(bot: Ibot) {
 
   const menu = {
     image: { url: path.resolve("assets", "img", "perfil.png") },
-    caption: `painel de controle\n *⚖️Juribot*`,
+    caption: `Painel de controle\n *⚖️Juribot*`,
     footer: "by ErwinSystem",
     buttons: buttons,
     headerType: 1,

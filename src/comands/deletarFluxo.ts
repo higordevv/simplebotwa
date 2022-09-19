@@ -7,12 +7,12 @@ import { delete_msg } from "../model/fluxo_model/fluxo";
 export default async function (bot: Ibot, name: string) {
   const { webMessage, reply } = bot;
   if (!name) {
-    return reply(`digite o nome da palavra junto do comando\n *Exemplo*: ${data.prefix}apagarFluxo nome`)
+    return reply(`Digite o nome da palavra junto do comando\n *Exemplo*: ${data.prefix}apagarFluxo nome`)
   }
   const result: any = await delete_msg(name)
   
   if (!result) {
-    return reply(`fluxo '${name}' não encontrado, cadastre usando *${data.prefix}setFluxo*`)
+    return reply(`Fluxo '${name}' não encontrado, cadastre usando *${data.prefix}setFluxo*`)
   }
-return reply(`*${name}* deletado!`)
+return reply(`*${name}* Deletado!`)
 }

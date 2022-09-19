@@ -6,7 +6,7 @@ import { delete_keyWord, read_keyWord, sch_keyWord } from "../model/keyword_mode
 export default async function (bot: Ibot, name: string) {
   const { webMessage, reply } = bot;
   if (!name) {
-    return reply(`digite o nome da palavra junto do comando\n *Exemplo*: ${data.prefix}apagarKeyword de palavra`)
+    return reply(`Digite o nome da palavra junto do comando\n *Exemplo*: ${data.prefix}apagarKeyword de palavra`)
   }
   const result: any = await delete_keyWord(name)
   

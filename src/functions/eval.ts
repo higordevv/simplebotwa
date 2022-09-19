@@ -1,5 +1,4 @@
 import { Iclient } from "../interfaces/Iclient";
-import { proto } from "@adiwajshing/baileys";
 
 function Eval(cliente: Iclient, msg: string | any) {
   let { nome, numero, extraMsg, tipoDeCliente } = cliente;
