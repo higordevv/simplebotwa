@@ -1,6 +1,6 @@
 import makeWaSocket, {
   DisconnectReason,
-  useSingleFileAuthState,
+  useMultiFileAuthState,
 } from "@adiwajshing/baileys";
 
 import { Boom } from "@hapi/boom";
@@ -8,7 +8,7 @@ import { Boom } from "@hapi/boom";
 import path from "path";
 
 export const Connect = async () => {
-  const { state, saveState } = useSingleFileAuthState(
+  const { state, saveCreds } = useMultiFileAuthState(
     path.resolve(__dirname, "..", "cache", "state.json")
   );
 
@@ -32,7 +32,7 @@ export const Connect = async () => {
     }
   });
 
-  socket.ev.on("creds.update", saveState);
+  socket.ev.on("creds.update", saveCreds);
 
   return socket;
 };

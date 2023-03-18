@@ -1,28 +1,29 @@
 {
-    "name": "simplebotwa",
-    "private": true,
-    "version": "0.0.0",
-    "type": "commonjs",
-    "scripts": {
-        "dev": "ts-node-dev ./src/index.ts",
-        "build": "tsc",
-        "start": "node ./build/index "
-    },
-    "devDependencies": {
-        "@types/cron": "^2.0.0",
-        "@types/mongoose": "^5.11.97",
-        "@types/node": "^18.7.18",
-        "ts-node-dev": "^2.0.0",
-        "typescript": "^4.6.4"
-    },
-    "dependencies": {
-        "@adiwajshing/baileys": "^4.4.0",
-        "@hapi/boom": "^10.0.0",
-        "cron": "^2.1.0",
-        "dotenv": "^16.0.2",
-        "link-preview-js": "^3.0.4",
-        "moongoose": "^0.0.5",
-        "qrcode-terminal": "^0.12.0",
-        "sharp": "^0.31.0"
-    }
+  "name": "simplebotwa",
+  "private": true,
+  "version": "0.0.0",
+  "type": "commonjs",
+  "scripts": {
+    "dev": "tsx ./src/index.ts",
+    "build": "tsup ./src",
+    "start": "node ./build/index "
+  },
+  "devDependencies": {
+    "@types/cron": "^2.0.0",
+    "@types/mongoose": "^5.11.97",
+    "@types/node": "^18.15.3",
+    "tsup": "^6.6.3",
+    "tsx": "^3.12.5",
+    "typescript": "^4.9.5"
+  },
+  "dependencies": {
+    "@adiwajshing/baileys": "^5.0.0",
+    "@hapi/boom": "^10.0.1",
+    "cron": "^2.3.0",
+    "dotenv": "^16.0.3",
+    "link-preview-js": "^3.0.4",
+    "moongoose": "^0.0.5",
+    "qrcode-terminal": "^0.12.0",
+    "sharp": "^0.31.3"
+  }
 }
