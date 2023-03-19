@@ -1,6 +1,6 @@
 import fastify, { FastifyInstance } from "fastify";
 import Cors from "@fastify/cors";
-import io from "fastify-socket.io";
+import fastify_io from "fastify-socket.io";
 import { Server, Socket } from "socket.io";
 import { createServer } from "http";
 import { BgCyan, FgGreen, FgYellow, Reset } from "./utils/Colors";
@@ -11,29 +11,33 @@ class BotServer {
   constructor() {
     this.App = fastify({ logger: true });
     this.middlewares();
+    this.socket;
   }
   private middlewares() {
     this.App.register(Cors);
-    this.App.register(io);
+    this.App.register(fastify_io);
   }
   public socket(sock: Socket, io: Server) {
     let bot: Bot;
-
-    sock.on("start", async () => {
+    sock.emit("start", async () => {
       bot = new Bot(io, sock);
       await bot.start();
     });
 
-    sock.on("logout", () => {
+    sock.emit("logout", () => {
       console.log(FgYellow, `[!] Bot logout`, Reset);
       bot.kill();
     });
   }
 }
 
-const ServerInstance = new BotServer().App.server;
+const { socket, App } = new BotServer();
 
-const HttpServer = createServer(ServerInstance);
+App.get("/", async (req, reply) => {
+  reply.send("online");
+});
+
+const HttpServer = createServer(App.server);
 
 const IoConfig = new Server(HttpServer, {
   cors: {
@@ -43,10 +47,14 @@ const IoConfig = new Server(HttpServer, {
   maxHttpBufferSize: 1e8,
 });
 
-IoConfig.on("connection", (socket) => {
-  new BotServer().socket(socket, IoConfig);
+App.ready((err) => {
+  if (err) throw err;
+
+  return App.io.on("connection", (sock) => {
+    socket(sock, IoConfig);
+  });
 });
 
-export default HttpServer.listen(3000, () => {
-  console.log(BgCyan + FgGreen + "[!] Server running!!" + Reset);
-});
+App.listen({ port: 8080 }, () =>
+  console.log(FgGreen + "[!] Server running!!" + Reset)
+);

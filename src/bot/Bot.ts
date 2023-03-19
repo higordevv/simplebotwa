@@ -9,11 +9,10 @@
 import { Server, Socket } from "socket.io";
 
 import makeWASocket, {
-  delay,
   DisconnectReason,
-  MessageRetryMap,
   useMultiFileAuthState,
 } from "@adiwajshing/baileys";
+
 import { Contact, Flux, FluxMessages } from "./types";
 import { Boom } from "@hapi/boom";
 import { FgGreen, FgRed, FgYellow, Reset } from "../utils/Colors";
@@ -44,29 +43,11 @@ export default class Bot {
     const { state, saveCreds } = await useMultiFileAuthState(
       path.resolve(__dirname, "..", "..", "cache")
     );
-    const msgRetryCounterMap: MessageRetryMap = {};
 
     const sock = makeWASocket({
       auth: state,
       defaultQueryTimeoutMs: undefined,
       printQRInTerminal: true,
-      msgRetryCounterMap: {},
-
-      patchMessageBeforeSending: (message) => {
-        message = {
-          viewOnceMessage: {
-            message: {
-              messageContextInfo: {
-                deviceListMetadataVersion: 2,
-                deviceListMetadata: {},
-              },
-              ...message,
-            },
-          },
-        };
-
-        return message;
-      },
     });
 
     sock.ev.on("connection.update", async (action) => {
