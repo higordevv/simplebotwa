@@ -1,60 +1,63 @@
 import fastify, { FastifyInstance } from "fastify";
-import Cors from "@fastify/cors";
-import fastify_io from "fastify-socket.io";
-import { Server, Socket } from "socket.io";
-import { createServer } from "http";
-import { BgCyan, FgGreen, FgYellow, Reset } from "./utils/Colors";
+import cors from "@fastify/cors";
+import io from "fastify-socket.io";
+import { Socket } from "socket.io";
+import { FgGreen, FgYellow, Reset } from "./utils/Colors";
 import Bot from "./bot/Bot";
 
-class BotServer {
+export class BotServer {
   readonly App: FastifyInstance;
   constructor() {
-    this.App = fastify({ logger: true });
+    this.App = fastify();
     this.middlewares();
+    this.routes();
     this.socket;
   }
   private middlewares() {
-    this.App.register(Cors);
-    this.App.register(fastify_io);
+    this.App.register(cors, {
+      origin: "*",
+    });
+    this.App.register(io, {
+      cors: {
+        origin: "*",
+      },
+    });
   }
-  public socket(sock: Socket, io: Server) {
+
+  private routes() {
+    this.App.get("/", async (req, reply) => {
+      reply.send("online");
+    });
+
+    this.App.ready((err) => {
+      if (err) throw err;
+
+      this.App.io.on("connection", (sock) => {
+        this.socket(sock);
+      });
+    });
+  }
+  private socket(sock: Socket) {
     let bot: Bot;
-    sock.emit("start", async () => {
-      bot = new Bot(io, sock);
+    sock.on("start", async () => {
+      bot = new Bot(sock);
       await bot.start();
     });
 
-    sock.emit("logout", () => {
+    sock.on("logout", () => {
       console.log(FgYellow, `[!] Bot logout`, Reset);
       bot.kill();
     });
   }
 }
 
-const { socket, App } = new BotServer();
+const { App } = new BotServer();
 
-App.get("/", async (req, reply) => {
-  reply.send("online");
-});
-
-const HttpServer = createServer(App.server);
-
-const IoConfig = new Server(HttpServer, {
-  cors: {
-    origin: "*",
-    methods: ["GET", "POST"],
+App.listen(
+  {
+    port: 3000,
   },
-  maxHttpBufferSize: 1e8,
-});
-
-App.ready((err) => {
-  if (err) throw err;
-
-  return App.io.on("connection", (sock) => {
-    socket(sock, IoConfig);
-  });
-});
-
-App.listen({ port: 8080 }, () =>
-  console.log(FgGreen + "[!] Server running!!" + Reset)
+  () => {
+    console.log(FgGreen + "[!] Server ON");
+  }
 );

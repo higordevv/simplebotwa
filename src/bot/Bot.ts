@@ -23,16 +23,13 @@ import { clearVoidCache, deleteInvalidCache } from "../utils/index";
 export default class Bot {
   public clientSocket: Socket;
 
-  private io: Server;
-
   public status: "desconectado" | "conectado" = "desconectado";
 
   public socket: any;
 
   private messages?: Contact[] = [];
 
-  constructor(io: Server, socket: Socket) {
-    this.io = io;
+  constructor(socket: Socket) {
     this.clientSocket = socket;
   }
 
