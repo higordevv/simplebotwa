@@ -9,10 +9,12 @@
 import { Server, Socket } from "socket.io";
 
 import makeWASocket, {
+  delay,
   DisconnectReason,
+  MessageRetryMap,
   useMultiFileAuthState,
 } from "@adiwajshing/baileys";
-
+import QRCode from "qrcode";
 import { Contact, Flux, FluxMessages } from "./types";
 import { Boom } from "@hapi/boom";
 import { FgGreen, FgRed, FgYellow, Reset } from "../utils/Colors";
@@ -41,10 +43,31 @@ export default class Bot {
       path.resolve(__dirname, "..", "..", "cache")
     );
 
+    const msgRetryCounterMap: MessageRetryMap = {};
+
+    //construção do socket de eventos do whatsapp
     const sock = makeWASocket({
+      qrTimeout: 20000,
       auth: state,
       defaultQueryTimeoutMs: undefined,
-      printQRInTerminal: true,
+      printQRInTerminal: false,
+      msgRetryCounterMap: {},
+
+      patchMessageBeforeSending: (message) => {
+        message = {
+          viewOnceMessage: {
+            message: {
+              messageContextInfo: {
+                deviceListMetadataVersion: 2,
+                deviceListMetadata: {},
+              },
+              ...message,
+            },
+          },
+        };
+
+        return message;
+      },
     });
 
     sock.ev.on("connection.update", async (action) => {
@@ -68,10 +91,12 @@ export default class Bot {
         }
       }
 
+      //se existir um qrcode
       if (update.qr) {
+        //emite o qrcode para o cliente e o status da conexão
         this.clientSocket.emit("conn", {
           status: "qrcode",
-          qr: update.qr,
+          qr: await QRCode.toDataURL(update.qr),
         });
       }
 
